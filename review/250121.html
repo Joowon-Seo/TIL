@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025년 1월 21일 복습</title>
+    <style>
+      /*cascading*/
+      p {
+        color: navy;
+      }
+
+      .p1 {
+        color: #008000;
+        /* hex코드 / 16진법 : R, G, B. 각각의 색상을 16진법의 숫자로 표현 */
+      }
+
+      #p2 {
+        color: crimson;
+        background-color: pink;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        /* 상 우 좌 하 */
+        margin: 20px 20px 10px 10px;
+        border: 2px solid #86a788;
+      }
+
+      #box-sizing {
+        box-sizing: border-box;
+      }
+
+      #content-sizing {
+        box-sizing: content-box;
+      }
+
+      .float {
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 인라인을 적용하는 방식 -->
+    <!-- 일괄적으로 하는 것에, cascade에 문제가 있다. -->
+    <!-- 따라서 head의 style 태그를 사용한다. -->
+    <!-- 명시도가 강하기 때문에 바뀌지 않음 -->
+    <p style="color: brown">오늘 하루도 시작!</p>
+    <div>
+      <p>p tag</p>
+      <p class="p1">class & p tag</p>
+      <p id="p2">id & p tag</p>
+    </div>
+    <!-- div>div.box#box-sizing+div.box#content-sizing -->
+    <div>
+      <div class="box" id="box-sizing"></div>
+      <div class="box" id="content-sizing"></div>
+    </div>
+
+    <!-- block 요소들 끼리의 float 로직 -->
+    <!-- 여러 클래스를 넣으려면 공백을 사용 -->
+    <div>
+      <div class="box float" id="box-sizing"></div>
+      <div class="box float" id="content-sizing"></div>
+    </div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+    exercitationem fuga cupiditate reiciendis quibusdam excepturi, doloremque
+    assumenda! Laborum explicabo possimus earum quo beatae culpa eveniet,
+    dolore, id laboriosam amet magni? Tempore voluptates recusandae cum
+    obcaecati distinctio eveniet, nesciunt culpa. Perspiciatis suscipit dolore
+    quo nemo commodi unde perferendis, reprehenderit in quasi voluptas, officiis
+    non magni porro! Adipisci id mollitia nostrum assumenda. Architecto mollitia
+    sed impedit ea eum tempore iste iure rem sint beatae et inventore totam
+    sapiente voluptate ad assumenda, explicabo labore quos incidunt non laborum
+    dolorum. Voluptate quo cumque ab. Voluptatum vero minus modi. Accusantium,
+    sed? Minima, deleniti ex odio perspiciatis atque laboriosam eaque
+    repellendus quam optio minus ipsa aliquid libero suscipit ullam? Nobis
+    excepturi unde illum doloribus ducimus hic. Inventore error provident ullam,
+    fugiat voluptate odio magnam itaque nobis nemo iusto suscipit a aliquam
+    laudantium in dolorum velit deserunt sit voluptates saepe magni quasi omnis
+    quidem, ad et. Officiis.
+    <!-- lorem 글자 수 채우기 명령어 -->
+    <!-- lorem * 100 -->
+    <div>
+      <div class="box float" id="box-sizing"></div>
+      <div style="clear: both" class="box" id="content-sizing"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+li {
+  color: orange;
+  font-size: 15px;
+}
+
+ol li {
+  color: green;
+}
+ol li {
+  /* 주석 같음 */
+  color: blue;
+}

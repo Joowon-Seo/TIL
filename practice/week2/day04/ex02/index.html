@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Felx(Flexbox)</title>
+    <style>
+      img {
+        width: 100px;
+      }
+
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .flex-item {
+        background-color: yellow;
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+      }
+
+      .row {
+        flex-direction: row;
+      }
+
+      .column {
+        flex-direction: column;
+      }
+
+      .row.reverse {
+        flex-direction: row-reverse;
+      }
+
+      .column.reverse {
+        flex-direction: column-reverse;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p style="margin: 0 40px; text-align: center">
+        <!-- 좌우로만 40px, 가운데 정렬 -->
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+        fugiat ad placeat, impedit alias repellat dolor hic eligendi, assumenda
+        fugit quibusdam eos mollitia dolores voluptatum optio sit amet
+        laudantium? Iusto!
+      </p>
+      <!-- 이미지가 텍스트 취급을 받나? -->
+      <div style="text-align: center">
+        <img src="dance_image.png" alt="춤추는이미지" />
+      </div>
+      <div>
+        <img
+          style="display: block; margin: 0 auto"
+          src="dance_image.png"
+          alt="춤추는이미지"
+        />
+      </div>
+      <div class="flex-container">
+        <div class="flex-item">1</div>
+        <div class="flex-item">2</div>
+        <div class="flex-item">3</div>
+        <div class="flex-item">4</div>
+        <div class="flex-item">5</div>
+      </div>
+      <div class="flex-container row">
+        <div class="flex-item">1</div>
+        <div class="flex-item">2</div>
+        <div class="flex-item">3</div>
+        <div class="flex-item">4</div>
+        <div class="flex-item">5</div>
+      </div>
+      <div class="flex-container row reverse">
+        <div class="flex-item">6</div>
+        <div class="flex-item">7</div>
+        <div class="flex-item">8</div>
+        <div class="flex-item">9</div>
+        <div class="flex-item">10</div>
+      </div>
+      <div class="flex-container column">
+        <div class="flex-item">6</div>
+        <div class="flex-item">7</div>
+        <div class="flex-item">8</div>
+        <div class="flex-item">9</div>
+        <div class="flex-item">10</div>
+      </div>
+      <div class="flex-container column reverse">
+        <div class="flex-item">6</div>
+        <div class="flex-item">7</div>
+        <div class="flex-item">8</div>
+        <div class="flex-item">9</div>
+        <div class="flex-item">10</div>
+      </div>
+    </div>
+    <div
+      class="flex-container"
+      style="
+        height: 500px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2px;
+      "
+    >
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">3</div>
+    </div>
+  </body>
+</html>
