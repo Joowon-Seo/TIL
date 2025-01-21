@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock-Paper-Scissors Game</title>
+
+    <!-- Add OG tags here -->
+    <meta property="og:title" content="가위바위보맛보는곳" />
+    <meta property="og:description" content="맛만보세요" />
+    <meta
+      property="og:image"
+      content="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUTEhMVFRUXEhcVEhUVFxcXFhUWFxIXFh0XFhkYHSggGBolHRUXITEhJSktLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGi8mHyYtLS0tLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0yLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAABAUGAwIBB//EADwQAAIBAgMFBQUHAgYDAAAAAAABAgMRBCExBRJBUWEGInGBkTKhscHRI0JScrLh8DNiExSCkqLxFXPC/8QAGAEBAAMBAAAAAAAAAAAAAAAAAAIDBAH/xAAjEQEBAQACAgMAAgMBAAAAAAAAAQIDESExEkFRIjJCYXET/9oADAMBAAIRAxEAPwD9xAAAAAAAAAAAAAAAAAAAAAVNRd6X5n8SHtSVoeZOxHty8fkV21v6fmZNfbVn6eKcrxO3Z6P203yhb1kvoRsP7JN7NLvVf9K/USx/aOb/AK1fAA0swAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACox07Tl5fpRA2jnTO+OqXqS8bemXyI9eV4vMya91qz6iJhq1kkWvZ6X2lRc1F+l18ymrp2TVnketg49KvFc7wfnp70juL1qG53mtoADUygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc8RU3YuXJHQr9r1MlHm7+hzV6nbuZ3elJKq76FfiZu+Vy2nSKrFZPQy2eGmOmFm3HPhlLquZzrYfdkqkdU1JeTufMFXSbXBkqrG8Xy4EVjX05ppNaNJrzPRB2LO9Cn0jb0bXyJxsl7jFZ1egAHXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACs2nC8l+X5lmU2Jr/ayXDRPry+JXyelnHPKJicRuLP0KTaeOg1dci72lS3os/L+1FGvGpHcl9m5WkuKf0Znacxp9nYiMrXass2+F+Rff4iayMDgqrpON0rPJX4PoavCY9SWd7+oiVjY7A/ox8ZfqZYkDYS+wh1u/wDkyeas+oxa/tQAEkQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIeL2nTpyUZN3etldR8Tlsnt2S3xEwAHXHirO0W+Sb9EZ+2t9W7vxZomiur7P4x/niVcktW8WpPaHRqXunm1r5lJtbY8ZvNJ53sXbwcqafFuV3b5eh4oNvevqrPxKbGiX7jIT2K4zjJpyprVLNx6kvE4JUrON2m8muTXwNJ/loyetn0ep5obLbkoNXgpXvpZcjnxvfTt3F3s+G7SguUF8CQAbIw0AAAAAAAAAAAAAAAAAAAAAAAAAAHmpNRTbaSWreiFOopK8WmuDWaIW3ZWoT8v1op+zeJaquF8pRbt/cuPpf3ELvrUi3PH3i6acAE1TnXqqMXJ8F/EZOVCVWolvd6cu9lotXbyRcbZxX3E9M342yX85kfs1hbuVZ8e7D1zfqreTKdX5a+LRx34Zul+kfQQ8bj4wyWcracvEtt6USW3qJgM1s/a1SddQTbz7y4KN830NKczr5JbxcXqvMoJ6o8LDx4RXz9TqDvUR7rhDCQT3rXa0vwO4Akk9FtoADrjzOSSbbskrt8kccJjYVL7r055eZ0xNFThKL4poz2EryjK1rSi7NcPDwIa10txial/WlB5pzTSa4nomqAAAAAAAAAAAAAAAAAAAAAFJ2srWpKPGU1l0WfxsUPZqTli45ZJSv8A7X9Sb2uq71SMV92OfjL9kvU+9j6F5zn+GO7/ALnf/wCTPq98jXn+PFWrOWJrKEXJ8F6vgjqU22a2/wDZxejvJ9eRdrXUZsZ+V6VTbz4uUvWTf1ZqcNRUIxitErfuUuxsLed5fdV0uun88iZtLaKjeEXnxfLoupVi/GfKruSXV+Mfdo7TjBNReel+Cf1M9CU6tTchm37TeiX4meKylUmqdON5P0S4t9DV7N2fCjDdjrrKT1k+b+hyd8l7+nb1xzx7NnbPhRi1FZvOcuMn1+hLOdevGCvJpL+acyLgtpwqycY3TSvnxV7fNF/cnhR1q/yTgAdRADN7Y23KnWdO+4kk45LvXSd7vrl5Eda6Txi7vUaQFJgttt2uk/DJ/RltRxEZaPPk9RNSmuPWfbqU+2KShJVbZO0ZePB/L0Lg44ugpwlB8Vbz4P1Gp3HMa6qBs7F2ai9JadH+5alBR0SeXyaLnC1d6KfHR+JDi19J8ufuOwALVQAAAAAAAAAAAAAAAAAeK/sy/K/gBj6lqrlLi5t+XD3EvZFR0HKyTUrX4Zr+Mg4OXEmSkZPXlt9zr6WOJ2nNq0Eknle+a9xXUq9sjk67Ob4HLq1zOZPEWNGs9U7PTIr8VhakpKNNXcnbour6HWjI6vEygt5ao579pevS32fgqeHjreT9qT1k+i5dDhittLSOXV6+hQPa8pO0U5TfCN22WGztgTm9/EOy4U08/wDW18EW53b4zFVxM+d1Bm62Im1STk9JTl7MfF/JGi2NseNBN3c6kl3pv4RXBFhSpRilGKUUtElZI9lmeOTzVe+W6nU9AALFQccVhYVI7tSEZLlJX9OTOwAzOJ7NuD3sPJ/+uT/TJ/B+pEhj5RluTTjJcJZP911RsSJtHZ1OvHdqK/JrKUXzTK9cf4tzy3/JFweMa1e8vevMsqVVSV0/2MricDXw92l/i0+cfbS6x+a9xJ2fW3u8m10zTXiVzes+KncZ15iVjI/aSS5387fU64Gvuys9Hx6kKrO011+J5hUu3dOyeXnZ/Uh8vPadx/HppAVuGxu7ZS04Pl9SxTNOdTXpm1mx9ABJEAAAAAAAAAAAAACPtCpu0py5Qk/cz7isXCmryduS4vwRmNtbVlVW4luw4834/Qr3yTKeMWoGCqomOTKiit3J36MtcNmjNddtUjtSjfgdtzofYOx9nWSOyOPMYpM+VY3VnoRMXjYpXb0OWFpYmv8A04Wg/vz7sX4cX5If6iXqd1oMDUoUY2pQsrZvK78Xqz29tR4R9/7FfR7N1fv4jyjD5t/Il4fs1Rj7TqT5702v0WLp/wCii3j+/KLiu0yi7d2/m2Xezq8p04ynFxb4NWeuWT0yPmE2dRp/06cYvmkr+upKJ5mp7qG9Zs6zAAE1YAAAAArdt13GKUXm5K647tn7r2KPEYt2zduhD7R4ypRqSUuMm4vnF6emnkZPHbXk9Lu5l3e62ceZMxtqG0qfGR3jtKnzR+XTr1LPvW6Jo7bNnPf70pNPjwRBK5fpzxCkstOH7EnBY5wylnH3rwM/hK8Uluu76/z4smf5h8SU7nlXZL4a+E00mndPRnozmzMc4a5xeq5dUaGnNSV07o0Y3NM+s/F6ABNEAAAAAAcMTi4Q9qSXTj6alTituN5U1b+56+SIa3nPtLOLfS4r4iMFeTS+fguJUYrbEnlTW6ub1+iKxtyd5Nt8Ww7Io1y2+l+eKT2+1G27u7fFvUh4itCOup6r1m9MivqUVq2UrHLE4pPjb5nXCY7qV2KorRavRcb9FxPWzuy2Nm7qO5F8and/4+17jslvpL5Se1zLaiXEjQx1SrLcpQlOXTh1b0S8S4wHYWmrOvUlUf4Y9yP1fqjUYPB06UdynBQjyS975vqy7PFq+1WubM/qo9kdmUrTxDU5cIawj4/ifuNGAaM5k9M+tXXsAB1EAAAAAAAAAAEHa+yqeIp7lRflktYvmj8x2t2bnhptSV4N92a9l9Oj6H64c8TQjUi4TipRas0+JDeJpZjkuX4zHArW2vwOM8O42ayzz9f+jX7b2FPDtyinKlwlxh0l9Sp/wozVuhnuemma78oOFxLRosFi1JZv6lXTwcHk7rw5nWlh9zSal0s0/oclrly0VGStkTsLXlF91+XB+KKTA1U8tHxVy3ou/wBB/wAcXVDHp+13X7v2JaZQxPdKrKPsu3Th6FmeW/aq8f4vAQKO0V99W6rT9ibCaaummuhdNS+lVzZ7egAScYzdvmdFAORznVMPTa6TmRatVHHEYpIpsXtDkcrqwxOMSPmydm1sVLu9ymn3qjWXhH8TJnZ/stOrapibxhrGnpKX5vwr3+BuqVKMUoxSjFKySVkl0Rbji781Vvl68RC2VsajQXcjeVs5yzm/PguisiwANMknpnt7AAdcAAAAAAAAAAAAAAAAAAB8avqZra3ZKEu9Qapy13fuPwt7Pll0NMDlzL7dmrPT82xmzMTSu5UpNcZQ7yy45aeZV/8AkW3b1P104YnBUqn9SnCX5op+l9Cq8X5V05v2Py/db0ZYYLaVSFlPvR96NRjey1KS+ybpvl7UfR5ryZlto4apQlu1Y2T9mSzjLwfyeZXrFiWdytDh8ZCayf1JBlcPVzyLfDYvmyCSyPkW4u8W14fM8wqJnsCQto1Oj8vowR7Al89fqPxn4o6uIsV2IxoBXVqsdadWapwV5SdorJXb6vI3XZ3snCjapWtUq6r8EH/anq+r8rAF3DmXzVPNqzxGmABpZwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOdejGcXGcVKL1TV0wAMZtzsxKknUoO8FnKDecV0b1Xjn4lJhscAZuTMl8NHHbZ5W+GxZYUsQAQWO++AA4/9k="
+    />
+    <!-- Add webfont link here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <!-- Favicon 위치 -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: #2bae66; /* 원하는 색상 코드로 변경 */
+        border-radius: 50%; /* 둥글게 표시 */
+        width: 3rem; /* 크기 조정 */
+        height: 3rem;
+      }
+    </style>
+  </head>
+  <body style="background-color: #fcf6f5">
+    <div class="container py-5">
+      <header class="text-center mb-4">
+        <h1 style="color: #2bae66">Rock-Paper-Scissors</h1>
+        <p class="text-muted">Play and test your luck!</p>
+      </header>
+
+      <!-- Game Cards -->
+      <div class="d-flex justify-content-center flex-wrap gap-3">
+        <div class="card" style="width: 18rem">
+          <div class="card-body text-center">
+            <img src="rock.png" alt="주먹이미지" />
+            <h5 class="card-title" style="color: #2bae66">Rock</h5>
+            <p class="card-text">Strong and steady!</p>
+            <button
+              class="btn btn-outline-success"
+              data-bs-toggle="modal"
+              data-bs-target="#resultModal"
+            >
+              Choose Rock
+            </button>
+          </div>
+        </div>
+
+        <div class="card" style="width: 18rem">
+          <div class="card-body text-center">
+            <img src="paper.png" alt="보자기이미지" />
+            <h5 class="card-title" style="color: #2bae66">Paper</h5>
+            <p class="card-text">Covers everything!</p>
+            <button
+              class="btn btn-outline-success"
+              data-bs-toggle="modal"
+              data-bs-target="#resultModal"
+            >
+              Choose Paper
+            </button>
+          </div>
+        </div>
+
+        <div class="card" style="width: 18rem">
+          <div class="card-body text-center">
+            <img src="scissors.png" alt="가위이미지" />
+            <h5 class="card-title" style="color: #2bae66">Scissors</h5>
+            <p class="card-text">Sharp and swift!</p>
+            <button
+              class="btn btn-outline-success"
+              data-bs-toggle="modal"
+              data-bs-target="#resultModal"
+            >
+              Choose Scissors
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel -->
+      <div
+        id="gameTipsCarousel"
+        class="carousel slide mt-5"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active text-center">
+            <p style="color: #2bae66">"Rock crushes Scissors!"</p>
+            <img src="" alt="" />
+          </div>
+          <div class="carousel-item text-center">
+            <p style="color: #2bae66">"Paper covers Rock!"</p>
+          </div>
+          <div class="carousel-item text-center">
+            <p style="color: #2bae66">"Scissors cuts Paper!"</p>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#gameTipsCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#gameTipsCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Result Modal -->
+      <div
+        class="modal fade"
+        id="resultModal"
+        tabindex="-1"
+        aria-labelledby="resultModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5
+                class="modal-title"
+                id="resultModalLabel"
+                style="color: #2bae66"
+              >
+                Game Result
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body text-center">
+              <p>Result goes here...</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
