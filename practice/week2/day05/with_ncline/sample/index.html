@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아침형인간 vs 저녁형인간</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Add OG tags here -->
+    <meta property="og:title" content="아침형인간VS저녁형인간" />
+    <meta property="og:description" content="늦잠잤어요" />
+    <meta property="og:image" content="" />
+
+    <!-- Add webfont link here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon 위치 -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+    <style>
+      body {
+        background: linear-gradient(to right, #ffecd2, #fcb69f);
+        font-family: "Black Han Sans", serif;
+        font-weight: 400;
+        font-style: normal;
+        transition: background 0.3s, color 0.3s;
+      }
+      .dark-mode {
+        background: linear-gradient(to right, #2c3e50, #4ca1af);
+        color: #f5f5f5;
+      }
+      .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .modal-header {
+        background: #fcb69f;
+        color: white;
+      }
+      .modal-footer {
+        justify-content: center;
+      }
+      .header-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        display: block;
+        margin: 0 auto;
+      }
+      .fixed-size {
+        width: 500px;
+        height: 500px;
+        object-fit: cover; /* 이미지 비율 유지 */
+      }
+      .carousel-item img {
+        display: block;
+        margin: 0 auto;
+        width: 500px;
+        height: 500px;
+        object-fit: cover;
+      }
+      #darkModeToggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        font-size: 1.25rem;
+        padding: 0.75rem 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="darkModeToggle" class="btn btn-dark">저녁형 인간 모드</button>
+    <div class="container py-5">
+      <div class="text-center mb-4">
+        <h1 class="mb-0">
+          <img src="morningvsnight.png" alt="Header Image" class="header-img" />
+        </h1>
+      </div>
+
+      <div class="row g-4">
+        <!-- Morning Person Card -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title">아침형 인간이란?</h5>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#morningModal"
+              >
+                클릭
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evening Person Card -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title">저녁형 인간이란?</h5>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#eveningModal"
+              >
+                클릭
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Morning Modal -->
+    <div
+      class="modal fade"
+      id="morningModal"
+      tabindex="-1"
+      aria-labelledby="morningModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="morningModalLabel">
+              아침형 인간 : 종달새형
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            좌뇌 사용, 순응적, 사회 규범과 규칙을 지킴, 부지런, 활동적, 명랑,
+            쾌활
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel -->
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide mb-5"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="종달새vs올뺴미.jpg" class="fixed-size" alt="Slide 1" />
+        </div>
+        <div class="carousel-item">
+          <img src="결과.png" class="fixed-size" alt="Slide 2" />
+        </div>
+        <div class="carousel-item">
+          <img src="결론.png" class="fixed-size" alt="Slide 3" />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Evening Modal -->
+    <div
+      class="modal fade"
+      id="eveningModal"
+      tabindex="-1"
+      aria-labelledby="eveningModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eveningModalLabel">
+              저녁형 인간 : 올빼미형
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            우뇌 사용, 감정적, 창조적, 귀납추리, 문제해결능력
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        darkModeToggle.textContent = document.body.classList.contains(
+          "dark-mode"
+        )
+          ? "아침형 인간 모드"
+          : "저녁형 인간 모드";
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
