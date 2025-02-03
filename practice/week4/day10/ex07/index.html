@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>랜덤 이모지 떠다니기 🎈</title>
+    <style>
+      body {
+        background-color: #222;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        overflow: hidden;
+      }
+      .emoji {
+        position: absolute;
+        font-size: 2rem;
+        user-select: none;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>키보드를 눌러보세요! 🎹</h1>
+
+    <script>
+      document.addEventListener("keydown", (event) => {
+        const emojis = [
+          "🎉",
+          "🔥",
+          "😂",
+          "😍",
+          "😎",
+          "💖",
+          "🐱",
+          "🌈",
+          "🎶",
+          "🍕",
+        ];
+        createFloatingEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
+      });
+
+      function createFloatingEmoji(emojiText) {
+        const emoji = document.createElement("div");
+        emoji.classList.add("emoji");
+        emoji.innerText = emojiText;
+
+        // 랜덤 초기 위치 설정
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let vx = (Math.random() - 0.5) * 4; // X축 이동 속도 (-2 ~ 2)
+        let vy = (Math.random() - 0.5) * 4; // Y축 이동 속도 (-2 ~ 2)
+
+        emoji.style.left = `${x}px`;
+        emoji.style.top = `${y}px`;
+        document.body.appendChild(emoji);
+
+        function moveEmoji() {
+          x += vx;
+          y += vy;
+
+          // 화면 가장자리에 닿으면 반대 방향으로 튕기기
+          if (x <= 0 || x + 40 >= window.innerWidth) {
+            vx *= -1; // X축 반전
+          }
+          if (y <= 0 || y + 40 >= window.innerHeight) {
+            vy *= -1; // Y축 반전
+          }
+
+          emoji.style.left = `${x}px`;
+          emoji.style.top = `${y}px`;
+
+          requestAnimationFrame(moveEmoji); // 다음 프레임에서도 움직이게 함
+        }
+
+        moveEmoji();
+
+        // 일정 시간이 지나면 이모지 삭제
+        setTimeout(() => {
+          emoji.remove();
+        }, 10000); // 10초 후 삭제
+      }
+    </script>
+  </body>
+</html>
