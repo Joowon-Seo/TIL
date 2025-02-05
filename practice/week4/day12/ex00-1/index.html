@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>칭찬해드립니다</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- OG 태그 -->
+    <meta property="og:title" content="칭찬해드립니다." />
+    <meta property="og:description" content="칭찬은 고래도 춤추게 한다." />
+    <meta property="og:image" content="https://www.example.com/og-image.jpg" />
+    <style>
+      /* 전체 배경 */
+      body {
+        background-color: #ffdfde;
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* 헤더 */
+      header {
+        margin-bottom: 20px;
+      }
+
+      /* 폼 스타일 */
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        text-align: left;
+      }
+
+      /* 폼 내부 요소 스타일 */
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      select,
+      textarea {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #6a7ba2;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      /* 버튼 스타일 */
+      button {
+        background-color: #6a7ba2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #5a6b92;
+      }
+
+      /* 칭찬 목록 컨테이너 */
+      #container {
+        margin-top: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* 칭찬 카드 */
+      .praise-card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        text-align: left;
+        position: relative;
+      }
+
+      /* 칭찬 답변 */
+      .reply-box {
+        background-color: beige;
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid black;
+        border-radius: 6px;
+      }
+
+      /* 삭제 버튼 */
+      .delete-button {
+        background-color: #ff7272;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .delete-button:hover {
+        background-color: #d45555;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button id="resetButton">칭찬 비우기</button>
+    </header>
+
+    <form id="controller">
+      <label>
+        모델 :
+        <select name="modelOption">
+          <option value="1">긍정적인 gemini-1.5-flash</option>
+          <option value="2">유쾌한 deepseek-r1</option>
+        </select>
+      </label>
+      <label>
+        <textarea
+          name="textData"
+          rows="4"
+          placeholder="어떤 것을 칭찬해 드릴까요?"
+        ></textarea>
+      </label>
+      <button>칭찬받기</button>
+    </form>
+
+    <div id="container"></div>
+
+    <script>
+      const _ = () => {
+        const container = document.querySelector("#container");
+        const form = document.querySelector("#controller");
+        const resetButton = document.querySelector("#resetButton");
+
+        resetButton.addEventListener("click", () => (data.length = 0));
+
+        const data = new Proxy([], {
+          set(target, property, value) {
+            target[property] = value;
+            updateContainer();
+            updateStorage(target);
+            return true;
+          },
+        });
+
+        function onMounted() {
+          data.push(...(JSON.parse(localStorage.getItem("myData")) ?? []));
+        }
+        onMounted();
+
+        function updateContainer() {
+          container.innerHTML = "";
+          for (const d of data) {
+            const tmp = document.createElement("div");
+            tmp.classList.add("praise-card");
+            tmp.textContent = d.text;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "칭찬 버리기";
+            deleteButton.classList.add("delete-button");
+            deleteButton.addEventListener("click", () => {
+              const filtered = data.filter((value) => value.id !== d.id);
+              data.length = 0;
+              data.push(...filtered);
+            });
+
+            if (d.reply) {
+              const box = document.createElement("div");
+              box.classList.add("reply-box");
+              box.textContent = d.reply;
+              tmp.appendChild(box);
+            }
+
+            tmp.appendChild(deleteButton);
+            container.appendChild(tmp);
+          }
+        }
+
+        function updateStorage(target) {
+          localStorage.setItem("myData", JSON.stringify(target));
+        }
+
+        async function handleForm(event) {
+          event.preventDefault();
+          const formData = new FormData(form);
+          const text = formData.get("textData");
+          let reply;
+
+          switch (formData.get("modelOption")) {
+            case "1":
+              reply = `👬 Gemini : ${await makeReply(text)}`;
+              break;
+            case "2":
+              reply = `👀 DeepSeek : ${await makeReply2(text)}`;
+              break;
+            default:
+              alert("비정상적인 접근!");
+              throw new Error("알 수 없는 에러!");
+          }
+
+          const displayData = {
+            id: Date.now(),
+            text,
+            reply,
+          };
+          data.push(displayData);
+        }
+
+        async function makeReply(text) {
+          const url = "https://iron-adjoining-chrysanthemum.glitch.me/1";
+          const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify({ text }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          const json = await response.json();
+          return json.reply;
+        }
+
+        async function makeReply2(content) {
+          const url = "https://iron-adjoining-chrysanthemum.glitch.me/2"; // API URL
+          const response = await fetch(url, {
+            method: "POST", // POST 요청
+            body: JSON.stringify({ text: content }),
+            headers: {
+              "Content-Type": "application/json", // JSON 형식의 데이터 전송
+            },
+          });
+
+          const json = await response.json(); // JSON 응답 받기
+          return json.reply; // 모델의 답변 반환
+        }
+
+        form.addEventListener("submit", handleForm);
+      };
+
+      window.onload = _;
+    </script>
+  </body>
+</html>
