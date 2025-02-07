@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Recommendation</title>
+  </head>
+  <body>
+    <header>
+      <button id="resetButton">저장된 데이터 리셋</button>
+    </header>
+    <form id="controller">
+      <label>
+        모델 :
+        <select name="modelOption">
+          <option value="1">gemini-1.5-flash</option>
+          <option value="2">deepseek-r1</option>
+          <option value="3">gemini-2.0-flash</option>
+          <option value="4">gemini-2.0-pro-exp-02-05</option>
+          <option value="5">gemini-2.0-flash-thinking-exp-01-21</option>
+        </select>
+      </label>
+      <textarea name="textData"></textarea>
+      <button>등록</button>
+    </form>
+    <div id="container"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector("#container");
+        const form = document.querySelector("#controller");
+        const resetButton = document.querySelector("#resetButton");
+
+        const data = new Proxy([], {
+          set(target, property, value) {
+            target[property] = value;
+            updateContainer();
+            updateStorage(target);
+            return true;
+          },
+        });
+
+        function init() {
+          data.push(...(JSON.parse(localStorage.getItem("myData")) || []));
+        }
+
+        function updateContainer() {
+          container.innerHTML = "";
+          data.forEach((d) => {
+            const item = document.createElement("div");
+            item.textContent = d.text;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "삭제";
+            deleteButton.addEventListener("click", () => {
+              data.length = 0;
+              data.push(...data.filter((value) => value.id !== d.id));
+            });
+
+            if (d.reply) {
+              const replyBox = document.createElement("div");
+              replyBox.style.cssText =
+                "padding:12px; margin:4px; background-color:beige; border:1px solid black;";
+
+              const reply = document.createElement("code");
+              reply.textContent = d.reply;
+              replyBox.appendChild(reply);
+              item.appendChild(replyBox);
+            }
+
+            item.appendChild(deleteButton);
+            container.appendChild(item);
+          });
+        }
+
+        function updateStorage(target) {
+          localStorage.setItem("myData", JSON.stringify(target));
+        }
+
+        async function handleForm(event) {
+          event.preventDefault();
+          const formData = new FormData(form);
+          const text = formData.get("textData");
+          let reply;
+
+          switch (formData.get("modelOption")) {
+            case "1":
+              reply = `👬 Gemini : ${await fetchGeminiReply(
+                text,
+                "gemini-1.5-flash"
+              )}`;
+              break;
+            case "2":
+              reply = `👀 DeepSeek : ${await fetchDeepSeekReply(text)}`;
+              break;
+            case "3":
+              reply = `🤼 Gemini 2 : ${await fetchGeminiReply(
+                text,
+                "gemini-2.0-flash-001"
+              )}`;
+              break;
+            case "4":
+              reply = `👨‍🎓 Gemini 2 Pro : ${await fetchGeminiReply(
+                text,
+                "gemini-2.0-pro-exp-02-05"
+              )}`;
+              break;
+            case "5":
+              reply = `🤔 Gemini 2 Thinking: ${await fetchGeminiReply(
+                text,
+                "gemini-2.0-flash-thinking-exp-01-21"
+              )}`;
+              break;
+            default:
+              alert("비정상적인 접근!");
+              throw new Error("알 수 없는 에러!");
+          }
+
+          data.push({ id: Date.now(), text, reply });
+        }
+
+        // async function fetchGeminiReply(text) {
+        async function fetchGeminiReply(text, model) {
+          //   const url =
+          //     "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZNgEdNMCLI5SrHt-us8x10a2H64VqtwI";
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=AIzaSyAZNgEdNMCLI5SrHt-us8x10a2H64VqtwI`;
+          const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  parts: [
+                    {
+                      text: `너는 20년 경력의 메뉴 추천 전문가야. {${text}}의 메시지를 바탕으로, 점심 메뉴를 추천해주고, 50자 이내에 평문으로 작성해줘.`,
+                    },
+                  ],
+                },
+              ],
+            }),
+          });
+          const json = await response.json();
+          return json.candidates[0].content.parts[0].text;
+        }
+
+        async function fetchDeepSeekReply(
+          text,
+          model = "deepseek-r1-distill-llama-70b"
+        ) {
+          const response = await fetch(
+            "https://api.groq.com/openai/v1/chat/completions",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer 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`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                messages: [
+                  {
+                    role: "user",
+                    content: `너는 20년 경력의 메뉴 추천 전문가야. {${text}}의 메시지를 바탕으로, 점심 메뉴를 추천해주고, 50자 이내에 평문으로 작성해줘. 결과는 한글로 작성해줘.`,
+                  },
+                ],
+                model,
+              }),
+            }
+          );
+          const json = await response.json();
+          return json.choices[0].message.content.split("</think>")[1].trim();
+        }
+
+        form.addEventListener("submit", handleForm);
+        resetButton.addEventListener("click", () => (data.length = 0));
+
+        init();
+      });
+    </script>
+  </body>
+</html>
