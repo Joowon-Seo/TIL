@@ -139,6 +139,38 @@
       .suggestion-btn:hover {
         background-color: #d6d9dc;
       }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        background: white;
+        color: black;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        display: none;
+        width: 200px;
+      }
+      .dropdown-menu.show {
+        display: block;
+      }
+      .dropdown-menu a {
+        display: block;
+        padding: 8px 10px;
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+        transition: background 0.2s;
+      }
+      .dropdown-menu a:hover {
+        background: #f1f1f1;
+      }
+      .dropdown-divider {
+        height: 1px;
+        background: #ddd;
+        margin: 5px 0;
+      }
     </style>
   </head>
   <body>
@@ -167,7 +199,16 @@
             </button>
           </div>
         </div>
-
+        <div id="dropdownMenu" class="dropdown-menu">
+          <a href="#">Login</a>
+          <a href="#">Settings</a>
+          <a href="#">My Chats</a>
+          <a href="#">Manage Subscription</a>
+          <div class="dropdown-divider"></div>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Terms of Service</a>
+        </div>
         <!-- 추천 질문 -->
         <div class="suggestions">
           <button class="suggestion-btn">Inspire me where to go</button>
